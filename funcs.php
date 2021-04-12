@@ -68,3 +68,13 @@ function get_csv($csvfile, $mode='sjis')
     }
     return $records;
 }
+
+// ログインチェク処理 loginCheck()
+function loginCheck(){
+    if($_SESSION['chk_ssid'] != ''){
+        exit();
+    } else {
+        session_regenerate_id(true);
+        $_SESSION['chk_ssid'] = session_id();
+    }
+}
