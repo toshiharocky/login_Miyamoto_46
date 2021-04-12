@@ -19,7 +19,7 @@ echo $kanri_flg;
 echo $life_flg;
 
 // 情報更新処理（DB更新）
-$pdo = db_conn();
+$pdo = dbconn();
 
 // SQL
 $stmt = $pdo->prepare(

@@ -7,7 +7,7 @@ session_start();
 //select.phpのPHP部分コードをマルっとコピーしてきます。
 //※SQLとデータ取得の箇所を修正、GETの内容をSELECTする！
 require_once('funcs.php');
-$pdo = db_conn();
+$pdo = dbconn();
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare(

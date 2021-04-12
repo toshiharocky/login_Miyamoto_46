@@ -54,7 +54,7 @@
 
 <!-- // データベース接続
 // require_once('funcs.php');
-// $pdo = db_conn();
+// $pdo = dbconn();
 
 //２．データ登録SQL作成
 // $stmt = $pdo->prepare(

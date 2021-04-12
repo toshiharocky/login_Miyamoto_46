@@ -21,7 +21,7 @@ $id = $_GET['id'];
 
 
 //1.  DB接続します
-$pdo = db_conn();
+$pdo = dbconn();
 
 //２．データ取得SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE id=$id");
