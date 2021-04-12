@@ -36,7 +36,7 @@ if ($status == false) {
     // exit("SQLError:" . print_r($error, true));
 } else {
     //*** function化する！*****************
-    redirect('99. after processing.php');
+    redirect('99-4. after processing.php');
 }
 
 

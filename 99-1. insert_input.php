@@ -16,7 +16,7 @@
 <body>
 
 
-<form action="02-2. insert_confirm.php" method="POST">
+<form action="99-2. insert_confirm.php" method="POST">
     <div class="input-wrapper">
     <div class="input-wrapper">
         氏名：

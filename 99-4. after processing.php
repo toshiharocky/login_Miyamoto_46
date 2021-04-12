@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登録確認</title>
+    <title>Document</title>
     <style>
         div {
             padding: 10px;
@@ -13,50 +13,42 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
 
 <?php
-// <!-- funcs.phpの読み込み -->
-    require_once("funcs.php");
-
-
-// 変数の受け取り
 session_start();
-$_SESSION['name'] = $_POST['name'];
-$_SESSION['lid']= $_POST['lid'];
-$_SESSION['lpw']= $_POST['lpw'];
-$_SESSION['kanri_flg'] = $_POST['kanri_flg'];
-$_SESSION['life_flg'] = $_POST['life_flg'];
-
 $kanri_flg = "";
 $life_flg = "";
 
 switch ($_SESSION['kanri_flg']){
     case 0:
         $kanri_flg = "管理者";
+        break;
     case 1:
         $kanri_flg = "スーパー管理者";
-}
+        break;
+    }
 
 switch ($_SESSION['life_flg']){
     case 0:
         $life_flg = "退社";
+        break;
     case 1:
         $life_flg = "入社";
+        break;
 }
-
 
 ?>
 
-<h1>登録確認画面</h1>
+<body>
+    <h1>登録が完了しました</h1>
     <table id="table">
         <tr>
             <td class='table_left'>氏名</td>
-            <td class='table_left'><?=h($_SESSION['name'])?></td>
+            <td class='table_left'><?=$_SESSION['name']?></td>
         </tr>
         <tr>
             <td class='table_left'>ログインID</td>
-            <td class='table_left'><?=h($_SESSION['lid'])?></td>
+            <td class='table_left'><?=$_SESSION['lid']?></td>
         </tr>
         <tr>
             <td class='table_left'>ログインパスワード</td>
@@ -64,17 +56,17 @@ switch ($_SESSION['life_flg']){
         </tr>
         <tr>
             <td class='table_left'>管理権限</td>
-            <td class='table_left'><?=h($kanri_flg)?></td>
+            <td class='table_left'><?=$kanri_flg?></td>
         </tr>
         <tr>
             <td class='table_left'>ステータス</td>
-            <td class='table_left'><?=h($life_flg)?></td>
+            <td class='table_left'><?=$life_flg?></td>
         </tr>
-        </table>
-    <div class="btn-wrapper">
-        <button onclick="location.href='99-3. insert_exe.php'">送信</button>
-    </div>
-
-    
+    </table>
+   
+<div class="btn-wrapper">
+    <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
+</div>
+ 
 </body>
 </html>
