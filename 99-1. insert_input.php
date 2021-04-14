@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
+    <!-- css -->
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="inventory.css">
     <style>
         div {
             padding: 10px;
@@ -14,42 +17,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+<?php
+    session_start();
+    require_once('funcs.php');
+    if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
+        redirect('error_super.php');
+     } else {
+        $info .= 
+        '<form action="99-2. insert_confirm.php" method="POST">
+            <div class="input-wrapper">
+            <div class="input-wrapper">
+                氏名：
+                <input type="text" name="name" id="name"></input>
+            </div>
+            <div class="input-wrapper">
+                ログインID：
+                <input type="text" name="lid" id="lid"></input>
+            </div>
+            <div class="input-wrapper">
+                ログインパスワード：
+                <input type="text" name="lpw" id="lpw"></input>
+            </div>
+            <div class="input-wrapper">
+                ログインパスワード（確認用）：
+                <input type="text" id="lpw_dc"></input>
+            </div>
+            <div class="input-wrapper">
+                権限：
+                <select name="kanri_flg" id="kanri_flg">
+                    <option value="0">管理者</option>
+                    <option value="1">スーパー管理者</option>
+                </select>
+            </div>
+            <div class="input-wrapper">
+                ステータス：
+                <select name="life_flg" id="life_flg">
+                    <option value="0">退社</option>
+                    <option value="1">入社</option>
+                </select>
+            </div>
+            <input type="submit" value="送信" id="submit">
+        </form>';
+     }
+?>
+
+<?=$info?>
 
 
-<form action="99-2. insert_confirm.php" method="POST">
-    <div class="input-wrapper">
-    <div class="input-wrapper">
-        氏名：
-        <input type="text" name="name" id="name"></input>
-    </div>
-    <div class="input-wrapper">
-        ログインID：
-        <input type="text" name="lid" id="lid"></input>
-    </div>
-    <div class="input-wrapper">
-        ログインパスワード：
-        <input type="text" name="lpw" id="lpw"></input>
-    </div>
-    <div class="input-wrapper">
-        ログインパスワード（確認用）：
-        <input type="text" id="lpw_dc"></input>
-    </div>
-    <div class="input-wrapper">
-        権限：
-        <select name="kanri_flg" id="kanri_flg">
-            <option value="0">管理者</option>
-            <option value="1">スーパー管理者</option>
-        </select>
-    </div>
-    <div class="input-wrapper">
-        ステータス：
-        <select name="life_flg" id="life_flg">
-            <option value="0">退社</option>
-            <option value="1">入社</option>
-        </select>
-    </div>
-    <input type="submit" value="送信" id="submit">
-</form>
 
 
 <!-- // データベース接続

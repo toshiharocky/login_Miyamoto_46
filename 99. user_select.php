@@ -11,8 +11,8 @@
         }
     </style>
     <!-- css -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/userdb.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="inventory.css">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -32,47 +32,54 @@ $status = $stmt->execute();
 
 //３．データ表示
 $product = "";
-if ($status == false) {
-    //execute（SQL実行時にエラーがある場合）
-    $error = $stmt->errorInfo();
-    exit('ErrorQuery:' . print_r($error, true));
-}else{
-    //Selectデータの数だけ自動でループしてくれる
-    //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
-    while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-        switch ($result[kanri_flg]){
-            case 0:
-                $kanri_flg = "管理者";
-                break;
-            case 1:
-                $kanri_flg = "スーパー管理者";
-                break;
+
+
+session_start();
+require_once('funcs.php');
+if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
+    redirect('error_super.php');
+ } else {
+    if ($status == false) {
+        //execute（SQL実行時にエラーがある場合）
+        $error = $stmt->errorInfo();
+        exit('ErrorQuery:' . print_r($error, true));
+    }else{
+        //Selectデータの数だけ自動でループしてくれる
+        //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+        while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+            switch ($result[kanri_flg]){
+                case 0:
+                    $kanri_flg = "管理者";
+                    break;
+                case 1:
+                    $kanri_flg = "スーパー管理者";
+                    break;
+                }
+            
+            switch ($result[life_flg]){
+                case 0:
+                    $life_flg = "退社";
+                    break;
+                case 1:
+                    $life_flg = "入社";
+                    break;
             }
-        
-        switch ($result[life_flg]){
-            case 0:
-                $life_flg = "退社";
-                break;
-            case 1:
-                $life_flg = "入社";
-                break;
+
+            $table .= 
+            "
+            <tr>
+                <td>$result[name]</td>
+                <td>$result[lid]</td>
+                <td>$kanri_flg</td>
+                <td>$life_flg</td>
+                <td><a href='99-5. update_input.php?id=$result[id]'>更新</td>
+                <td><a href='99-8. delete_confirm.php?id=$result[id]'>削除</td>
+            </tr>
+            ";
         }
 
-        $table .= 
-        "
-        <tr>
-            <td>$result[name]</td>
-            <td>$result[lid]</td>
-            <td>$result[lpw]</td>
-            <td>$kanri_flg</td>
-            <td>$life_flg</td>
-            <td><a href='03-1. update_input.php?id=$result[id]'>更新</td>
-            <td><a href='04-1. delete_confirm.php?id=$result[id]'>削除</td>
-        </tr>
-        ";
     }
-
-}
+    }
 ?>
 
 <h1>登録者情報一覧</h1>
@@ -80,7 +87,6 @@ if ($status == false) {
     <tr>
         <th>氏名</th>
         <th>ログインID</th>
-        <th>ログインパスワード</th>
         <th>管理権限</th>
         <th>ステータス</th>
         <th>更新</th>

@@ -50,7 +50,7 @@ if ($status == false) {
         </tr>
         <tr>
             <td class='table_left'>ログインパスワード</td>
-            <td><input type='text' name='lpw' value='$result[lpw]'></td>
+            <td><input type='password' name='lpw' value='$result[lpw]'></td>
         </tr>
         <input type='hidden' name='id' value='$result[id]'>
         ";

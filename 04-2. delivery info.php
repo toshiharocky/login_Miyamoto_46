@@ -110,7 +110,7 @@
     <input type="submit" value="納品確認" id="submit" class="btn regBtn">
 </div>
 <div class="btn-wrapper">
-    <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
+    <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
 </div>
 </form>
 

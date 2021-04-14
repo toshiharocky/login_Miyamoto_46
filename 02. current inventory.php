@@ -16,42 +16,45 @@
 <?php
     // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
-
-     //1.  DB接続します
-    try {
-        //Password:MAMP='root',XAMPP=''
-        $pdo = new PDO('mysql:dbname=inventory_management;charset=utf8;host=localhost','root','root');
-    } catch (PDOException $e) {
-        exit('DBConnectError'.$e->getMessage());
-    }
-
-    //２．データ取得SQL作成
-    $stmt = $pdo->prepare("SELECT * FROM total_db ORDER BY model_num ASC");
-    $status = $stmt->execute();
-
-    //３．データ表示
-    $product = "";
-    if ($status == false) {
-        //execute（SQL実行時にエラーがある場合）
-        $error = $stmt->errorInfo();
-        exit('ErrorQuery:' . print_r($error, true));
-    }else{
-        //Selectデータの数だけ自動でループしてくれる
-        //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
-        while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $product .= 
-            "<tr>
-            <td>$result[category]</td>
-            <td>$result[model_num]</td>
-            <td>$result[product_name]</td>
-            <td>$result[total_amount]</td>
-            <td>$result[shop_amount]</td>
-            <td>$result[warehouse_amount]</td>
-            <td>$result[waiting_amount]</td>
-            <td>$result[threshold]</td>
-            </tr>";
-        }
-
+        session_start();
+        if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
+            redirect('error.php');
+         } else {
+             //1.  DB接続します
+            try {
+                //Password:MAMP='root',XAMPP=''
+                $pdo = new PDO('mysql:dbname=inventory_management;charset=utf8;host=localhost','root','root');
+            } catch (PDOException $e) {
+                exit('DBConnectError'.$e->getMessage());
+            }
+        
+            //２．データ取得SQL作成
+            $stmt = $pdo->prepare("SELECT * FROM total_db ORDER BY model_num ASC");
+            $status = $stmt->execute();
+        
+            //３．データ表示
+            $product = "";
+            if ($status == false) {
+                //execute（SQL実行時にエラーがある場合）
+                $error = $stmt->errorInfo();
+                exit('ErrorQuery:' . print_r($error, true));
+            }else{
+                //Selectデータの数だけ自動でループしてくれる
+                //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+                while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    $product .= 
+                    "<tr>
+                    <td>$result[category]</td>
+                    <td>$result[model_num]</td>
+                    <td>$result[product_name]</td>
+                    <td>$result[total_amount]</td>
+                    <td>$result[shop_amount]</td>
+                    <td>$result[warehouse_amount]</td>
+                    <td>$result[waiting_amount]</td>
+                    <td>$result[threshold]</td>
+                    </tr>";
+                }
+            }
 }
 // }
 ?>
@@ -71,7 +74,7 @@
         <?=$product?>
     </table>
     <div class="btn-wrapper">
-        <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
+        <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
     </div>
 
 

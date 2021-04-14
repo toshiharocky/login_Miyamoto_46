@@ -16,6 +16,10 @@
 <?php
     // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
+        session_start();
+        if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
+            redirect('error.php');
+        } 
     // 変数の受け取り
         $category = $_POST['category'];
         echo $category;
@@ -74,7 +78,7 @@
     </table>
 </form>
 <div class="btn-wrapper">
-    <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
+    <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
 </div>
 
 </body>

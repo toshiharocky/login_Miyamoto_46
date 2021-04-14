@@ -21,8 +21,8 @@
 require_once('funcs.php');
 // GETで変数取得
 session_start();
-$_SESSION['id'] = $_GET['id'];
-$id = $_SESSION['id'];
+$_SESSION['delete_id'] = $_GET['id'];
+$id = $_SESSION['delete_id'];
 
 //1.  DB接続します
 $pdo = dbconn();
@@ -49,8 +49,6 @@ if ($status == false) {
             <td>$result[lpw]</td>
             <td>$result[kanri_flg]</td>
             <td>$result[life_flg]</td>
-            <td><a href='03-1. update_input.php?id=$result[id]'>更新</td>
-            <td><a href='04-1. delete_confirm.php?id=$result[id]'>削除</td>
         </tr>
         ";
     }
@@ -66,8 +64,6 @@ if ($status == false) {
             <th class="table-left">ログインパスワード</th>
             <th class="table-left">管理権限</th>
             <th class="table-left">ステータス</th>
-            <th class="table-left">更新</th>
-            <th class="table-left">削除</th>
         </tr>
             <?=$table?>
     </table>

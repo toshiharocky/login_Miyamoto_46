@@ -11,25 +11,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="register">
-  <h1>商品一括登録</h1>
-  <h2>"CSV"フォルダから選択してください</h2>
-  <form action="06-5. register product lump confirm.php" method="post">
-  <div class="btn-wrapper">
-    <input id="file" name="file" type="file" />
-  </div>
-    <ul>
-    <li id="name" style="margin-top:20px; font-size:20px;"></li>
-    <!-- <li>■ type ：ファイルのMIMEタイプ：<span id="type"></span></li>
-    <li>■ size ：ファイルサイズ ：<span id="size"></span></li> -->
-    <!-- <li><span id="daytime"></span></li> -->
-    </ul>
-    <div class="btn-wrapper" id="confirm_btn"></div>
-  </form>
-</div>
+
+<?php
+
+session_start();
+require_once('funcs.php');
+if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
+    redirect('error_super.php');
+ } else {
+   $info .=
+   "
+   <div class='register'>
+   <h1>商品一括登録</h1>
+   <h2>'CSV'フォルダから選択してください</h2>
+   <form action='06-5. register product lump confirm.php' method='post'>
+   <div class='btn-wrapper'>
+     <input id='file' name='file' type='file' />
+   </div>
+     <ul>
+      <li id='name' style='margin-top:20px; font-size:20px;'></li>
+      <!-- <li>■ type ：ファイルのMIMEタイプ：<span id='type'></span></li>
+      <li>■ size ：ファイルサイズ ：<span id='size'></span></li> -->
+      <!-- <li><span id='daytime'></span></li> -->
+     </ul>
+     <div class='btn-wrapper' id='confirm_btn'></div>
+       </form>
+     </div>
+   ";
+ }
+?>
+
+<?=$info?>
+
+
 <div class="btn-wrapper">
-    <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
+    <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
 </div>
+
+
 <script>
 window.addEventListener('DOMContentLoaded', function() {
 // 指定されると動くメッソド

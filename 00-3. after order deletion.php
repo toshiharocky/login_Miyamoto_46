@@ -28,7 +28,7 @@
 
 <h1>発注ID<?=$id?>を削除しました</h1>
 <div class="btn-wrapper">
-    <a href="index.html" class="link">トップページへ戻る</a>
+    <a href="index.php" class="link">トップページへ戻る</a>
 </div>
 
 </body>

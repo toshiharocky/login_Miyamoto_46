@@ -11,6 +11,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+
+<?php
+require_once("funcs.php");
+session_start();
+if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
+    redirect('error.php');
+ } 
+?>
+
 <h1>商品情報更新</h1>
 <h2>カテゴリーを選択してください</h2>
 <div class="choice-wrapper">
@@ -22,7 +31,7 @@
     </form>
 </div>
 <div class="btn-wrapper">
-    <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
+    <button class="btn topBtn" onclick="location.href='index.php'">トップページへ戻る</button>
 </div>
 
 </body>

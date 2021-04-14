@@ -18,7 +18,7 @@ $status = $stmt->execute();
 
 // 数値の場合 PDO::PARAM_INT
 // 文字の場合 PDO::PARAM_STR
-$stmt->bindValue(':id', $_SESSION['id'], PDO::PARAM_INT);
+$stmt->bindValue(':id', $_SESSION['delete_id'], PDO::PARAM_INT);
 $status = $stmt->execute(); //実行
 
 //４．データ登録処理後

@@ -14,67 +14,77 @@
 <?php
     // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
+        session_start();
+        if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
+            redirect('error.php');
+         } else {
+             $info .=
+             "
+             <!-- 登録情報の記入 -->
+                <form action='06-2. register confirm.php' method='post'>
+                <h1>商品情報登録</h1>
+                <h2>商品情報を記入してください</h2>
+                <div class='register'>
+                    <table >
+                        <tr>
+                            <td class=register_table>カテゴリー：</td>
+                            <td class=register_table>
+                                <select name='category' id='category'>
+                                            <option value='default' selected>カテゴリーを選択</option>
+                                            <option value='supplements'>001_supplements</option>
+                                            <option value='clothes'>002_clothes</option>
+                                            <option value='equipment'>003_equipment</option>
+                                            <option value='books'>004_books</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>商品番号*：</td>
+                            <td class=register_table>
+                                <div class='productName' style='display:flex;'>
+                                    <input type='text'name='category_num' id='category_num' style='width:50px; height:21px; border:solid 1px black;' readonly></input>
+                                    <p style='padding:0 15px; height=21px; line-height:21px'>-</p> 
+                                    <input type='text' name='product_num' id='product_num' placeholder='6桁の数字を記入してください' style='width:200px'>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>商品名：</td>
+                            <td class=register_table><input class = 'register_input' type='test' name='product_name' id='product_name'></td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>在庫総数*：</td>
+                            <td class=register_table><input class = 'register_input' type='text' name='total_amount' id='total_amount'></td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>店舗内在庫*：</td>
+                            <td class=register_table><input class = 'register_input' type='text' name='shop_amount' id='shop_amount'></td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>倉庫内在庫*：</td>
+                            <td class=register_table><input class = 'register_input' type='text' name='warehouse_amount' id='warehouse_amount'></td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>納品待ち*：</td>
+                            <td class=register_table><input class = 'register_input' type='text' name='waiting_amount' id='waiting_amount'></td>
+                        </tr>
+                        <tr>
+                            <td class=register_table>発注閾値*：</td>
+                            <td class=register_table><input class = 'register_input' type='text' name='threshold' id='threshold'></td>
+                        </tr>
+                    </table>
+                    <input type='submit' value='送信' id='submit'>
+                </div>
+                </form>
+                <div class='btn-wrapper'>
+                    <button class='btn topBtn' onclick=location.href='index.php'>トップページへ戻る</button>
+                </div>
+             ";
+         }
 
 ?>
-    <!-- 登録情報の記入 -->
-    <form action="06-2. register confirm.php" method="post">
-    <h1>商品情報登録</h1>
-    <h2>商品情報を記入してください</h2>
-    <div class="register">
-        <table >
-            <tr>
-                <td class=register_table>カテゴリー：</td>
-                <td class=register_table>
-                    <select name="category" id="category">
-                                <option value="default" selected>カテゴリーを選択</option>
-                                <option value="supplements">001_supplements</option>
-                                <option value="clothes">002_clothes</option>
-                                <option value="equipment">003_equipment</option>
-                                <option value="books">004_books</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class=register_table>商品番号*：</td>
-                <td class=register_table>
-                    <div class="productName" style="display:flex;">
-                        <input type="text"name="category_num" id="category_num" style="width:50px; height:21px; border:solid 1px black;" readonly></input>
-                        <p style="padding:0 15px; height=21px; line-height:21px">-</p> 
-                        <input type="text" name="product_num" id="product_num" placeholder="6桁の数字を記入してください" style="width:200px">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class=register_table>商品名：</td>
-                <td class=register_table><input class = "register_input" type="test" name="product_name" id='product_name'></td>
-            </tr>
-            <tr>
-                <td class=register_table>在庫総数*：</td>
-                <td class=register_table><input class = "register_input" type='text' name='total_amount' id='total_amount'></td>
-            </tr>
-            <tr>
-                <td class=register_table>店舗内在庫*：</td>
-                <td class=register_table><input class = "register_input" type='text' name='shop_amount' id='shop_amount'></td>
-            </tr>
-            <tr>
-                <td class=register_table>倉庫内在庫*：</td>
-                <td class=register_table><input class = "register_input" type='text' name='warehouse_amount' id='warehouse_amount'></td>
-            </tr>
-            <tr>
-                <td class=register_table>納品待ち*：</td>
-                <td class=register_table><input class = "register_input" type='text' name='waiting_amount' id='waiting_amount'></td>
-            </tr>
-            <tr>
-                <td class=register_table>発注閾値*：</td>
-                <td class=register_table><input class = "register_input" type="text" name="threshold" id="threshold"></td>
-            </tr>
-        </table>
-        <input type="submit" value="送信" id="submit">
-    </div>
-    </form>
-    <div class="btn-wrapper">
-        <button class="btn topBtn" onclick="location.href='index.html'">トップページへ戻る</button>
-    </div>
+    
+<?=$info?>
 
 
 <script>

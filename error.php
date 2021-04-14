@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
     <!-- css -->
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="inventory.css">
@@ -12,21 +18,9 @@
 </head>
 <body>
 
-
-
-<?php
-// <!-- funcs.phpの読み込み -->
-    require_once("funcs.php");
-
-// 前ページからの変数の受け取り
-    session_start();
-    $model_num = $_SESSION['model_num'];
-    
-?>
-
-<h1>商品ID<?=$model_num?>を削除しました</h1>
+<h1>在職中の管理者/スーパー管理者のみアクセス可能です</h1>
 <div class="btn-wrapper">
-    <a href="index.php" class="link">トップページへ戻る</a>
+    <button class="btn topBtn" onclick=location.href="index.php">トップページへ戻る</button>
 </div>
 
 </body>
