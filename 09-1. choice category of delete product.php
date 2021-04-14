@@ -18,8 +18,13 @@ require_once('funcs.php');
 if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
     redirect('error_super.php');
  } else {
-     $info .= 
-     "<h1>商品削除</h1>
+    session_regenerate_id(true);
+    $_SESSION['chk_ssid'] = session_id();
+     
+ }
+?>
+
+<h1>商品削除</h1>
      <h2>カテゴリーを選択してください</h2>
      <div class='choice-wrapper'>
          <form class='options'action='09-2. choice delete product name.php' method='post'>
@@ -29,11 +34,6 @@ if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_S
              <button class='btn' type='submit' name='category' value='books'>books</button>
          </form>
      </div>
-     ";
- }
-?>
-
-<?=$info?>
 <div class='btn-wrapper'>
     <button class='btn topBtn' onclick="location.href='index.php'">トップページへ戻る</button>
 </div>

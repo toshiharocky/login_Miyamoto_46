@@ -14,6 +14,8 @@
 <?php
 // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
+        session_start();
+        $uname = $_SESSION['uname'];
 // 変数の受け取り
     $id =$_POST['id'];
     // echo $id;
@@ -103,7 +105,7 @@
         <tr>
             <td class=register_table>担当者：</td>
             <td class=register_table>
-                <input type="text" class = "register_input" name="delivery_person" id="delivery_person">
+                <input type="text" class = "register_input" name="delivery_person" id="delivery_person" value=<?=$uname?> readonly>
             </td>
         </tr>
     </table>

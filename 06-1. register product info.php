@@ -18,6 +18,8 @@
         if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
             redirect('error.php');
          } else {
+            session_regenerate_id(true);
+            $_SESSION['chk_ssid'] = session_id();
              $info .=
              "
              <!-- 登録情報の記入 -->

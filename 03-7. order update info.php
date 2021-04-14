@@ -19,6 +19,7 @@
     $id = $_POST['id'];
     $order_amount = $_POST['order_amount'];
     $model_num = $_POST['model_num'];
+    $uname = $_SESSION['uname'];
 
     //1.  DB接続します
     try {
@@ -86,7 +87,7 @@
                     </table>
                 <h2>修正内容</h2>
                     発注数：<input type="text" name="order" id="order"><br>
-                    担当者：<input type="text" name="order_person" id="order_person"><br>
+                    担当者：<input type="text" name="order_person" id="order_person" value=<?=$uname?> readonly><br>
                     <input type="submit" value="確認" id="submit" class="btn regBtn">
             </fieldset>
 </form>

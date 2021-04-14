@@ -17,7 +17,10 @@ require_once("funcs.php");
 session_start();
 if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
     redirect('error.php');
- }
+ } else {
+    session_regenerate_id(true);
+    $_SESSION['chk_ssid'] = session_id();
+}
 ?>
 
 <h1>使用登録</h1>

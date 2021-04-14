@@ -14,6 +14,8 @@
 <?php
 // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
+        session_start();
+        $uname = $_SESSION['uname'];
 // 変数の受け取り
     $model_num =$_POST['model_num'];
 // 商品名が表示されると、登録されている「商品番号」「在庫総数」「店舗内在庫」「倉庫内在庫」「納品待ち」「発注しきい値」が表示される
@@ -146,7 +148,7 @@
             <tr>
                 <td class=register_table>担当者：</td>
                 <td class=register_table>
-                    <input type="text" name="person_in_charge" id="person_in_charge">
+                    <input type="text" name="person_in_charge" id="person_in_charge" value=<?=$uname?> readonly>
                 </td>
             </tr>
         </table>

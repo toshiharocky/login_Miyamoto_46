@@ -20,6 +20,9 @@
         session_start();
         if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
             redirect('error.php');
+        } else {
+            session_regenerate_id(true);
+            $_SESSION['chk_ssid'] = session_id();
         }
     // 変数の受け取り
         $category = $_POST['category'];

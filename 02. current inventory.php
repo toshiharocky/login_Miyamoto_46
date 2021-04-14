@@ -20,6 +20,8 @@
         if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
             redirect('error.php');
          } else {
+            session_regenerate_id(true);
+            $_SESSION['chk_ssid'] = session_id();
              //1.  DB接続します
             try {
                 //Password:MAMP='root',XAMPP=''

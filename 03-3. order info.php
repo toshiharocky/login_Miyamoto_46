@@ -14,6 +14,8 @@
 <?php
 // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
+        session_start();
+        $uname = $_SESSION['uname'];
 // 変数の受け取り
     $model_num =$_POST['model_num'];
     // echo $model_num;
@@ -119,7 +121,7 @@
 <div class="input-wrapper">
     <form action="03-4. order confirm.php" method="post">
         発注数：<input type="text" name="order" id="order"><br>
-        担当者：<input type="text" name="order_person" id="order_person">
+        担当者：<input type="text" name="order_person" id="order_person" value=<?=$uname?> readonly>
         <?=$productInfo?><br>
         <input type="submit" value="発注内容の確認" id="submit" class="btn regBtn">
     </form>

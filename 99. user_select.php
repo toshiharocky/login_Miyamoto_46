@@ -39,6 +39,8 @@ require_once('funcs.php');
 if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
     redirect('error_super.php');
  } else {
+    session_regenerate_id(true);
+    $_SESSION['chk_ssid'] = session_id();
     if ($status == false) {
         //execute（SQL実行時にエラーがある場合）
         $error = $stmt->errorInfo();
