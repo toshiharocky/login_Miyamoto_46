@@ -32,11 +32,11 @@ $val = $stmt->fetch();         //1レコードだけ取得する方法
 if( $val['id'] != '' ){    //id情報が空欄でなければ
     //Login成功時
     $_SESSION['chk_ssid']  = session_id();
-    $_SESSION['kanri_flg'] = $val['kanri_flg'];
-    $_SESSION['life_flg'] = $val['life_flg'];
+    $_SESSION['u_kanri_flg'] = $val['kanri_flg'];
+    $_SESSION['u_life_flg'] = $val['life_flg'];
     $_SESSION['uname']      = $val['name'];
-    $_SESSION['lid']      = $val['lid'];
-    $_SESSION['lpw']      = $val['lpw'];
+    $_SESSION['u_lid']      = $val['lid'];
+    $_SESSION['u_lpw']      = $val['lpw'];
     header('Location: index.php');
 }else{
     //Login失敗時(Logout経由)

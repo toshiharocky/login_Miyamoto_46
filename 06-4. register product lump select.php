@@ -16,7 +16,7 @@
 
 session_start();
 require_once('funcs.php');
-if($_SESSION['chk_ssid'] != session_id() || $_SESSION['kanri_flg'] != '1' || $_SESSION['life_flg'] != '1'){
+if($_SESSION['chk_ssid'] != session_id() || $_SESSION['u_kanri_flg'] != '1' || $_SESSION['u_life_flg'] != '1'){
     redirect('error_super.php');
  } else {
   session_regenerate_id(true);

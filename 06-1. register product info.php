@@ -15,7 +15,7 @@
     // <!-- funcs.phpの読み込み -->
         require_once("funcs.php");
         session_start();
-        if($_SESSION['chk_ssid'] != session_id() || $_SESSION['life_flg'] != '1'){
+        if($_SESSION['chk_ssid'] != session_id() || $_SESSION['u_life_flg'] != '1'){
             redirect('error.php');
          } else {
             session_regenerate_id(true);

@@ -23,7 +23,7 @@
         session_regenerate_id(true);
         $_SESSION['chk_ssid'] = session_id();
         $uname = $_SESSION['uname'];
-        switch($_SESSION['kanri_flg']){
+        switch($_SESSION['u_kanri_flg']){
             case '0':
                 $kanri_flg = "管理者";
                 break;
@@ -31,7 +31,7 @@
                 $kanri_flg = "スーパー管理者";
                 break;
         }
-        switch($_SESSION['life_flg']){
+        switch($_SESSION['u_life_flg']){
             case '0':
                 $life_flg = "退社";
                 break;
