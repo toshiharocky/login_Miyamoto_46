@@ -29,31 +29,31 @@
 ?>
 
 <form action="99-2. insert_confirm.php" method="POST">
-    <div class="input-wrapper">
-    <div class="input-wrapper">
+    <div class="register_table">
+    <div class="register_table">
         氏名：
         <input type="text" name="name" id="name"></input>
     </div>
-    <div class="input-wrapper">
+    <div class="register_table">
         ログインID：
         <input type="text" name="lid" id="lid"></input>
     </div>
-    <div class="input-wrapper">
+    <div class="register_table">
         ログインパスワード：
         <input type="password" name="lpw" id="lpw"></input>
     </div>
-    <div class="input-wrapper">
+    <div class="register_table">
         ログインパスワード（確認用）：
         <input type="password" id="lpw_dc"></input>
     </div>
-    <div class="input-wrapper">
+    <div class="register_table">
         権限：
         <select name="kanri_flg" id="kanri_flg">
             <option value="0">管理者</option>
             <option value="1">スーパー管理者</option>
         </select>
     </div>
-    <div class="input-wrapper">
+    <div class="register_table">
         ステータス：
         <select name="life_flg" id="life_flg">
             <option value="0">退社</option>
